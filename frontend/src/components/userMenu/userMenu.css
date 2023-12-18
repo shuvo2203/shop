@@ -1,0 +1,9 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(222, 218, 218);
+    height: max-content;
+    padding:25px;
+    gap:15px;
+    border-radius: 5px;
+}

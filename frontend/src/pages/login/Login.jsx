@@ -24,7 +24,7 @@ const Login = () => {
       alert('Invalid Login Details');
     }
   }
-console.log(userAuth);
+
   return (
     <>
       <div className='container'>

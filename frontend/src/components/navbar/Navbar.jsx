@@ -10,6 +10,7 @@ const Navbar = () => {
     const logout=async()=>{
         await axios.get('http://localhost:5000/api/v1/logout');
         setUserAuth({...userAuth, user:null, token:''})
+        localStorage.removeItem('auth')
     }
 
     return (
@@ -22,10 +23,10 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto">
                         {
-                            userAuth.user ? (
+                            userAuth?.user ? (
                                 <>
                                     <li className="nav-item">
-                            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                            <Link className="nav-link" to={`/dashboard/${userAuth.user.role === "admin" ? 'admin':'user'}`}>Dashboard</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/login" onClick={logout}>Logout</Link>

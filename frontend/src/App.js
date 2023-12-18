@@ -4,8 +4,15 @@ import Home from './pages/home/Home';
 import Navbar from './components/navbar/Navbar';
 import Register from './pages/register/Register';
 import Login from './pages/login/Login';
+import { useAuth } from './UserContext';
+import Admin from './pages/admin/Admin';
+import User from './pages/user/User';
+import EditUser from './pages/editUser/EditUser';
 
 function App() {
+
+  const[userAuth, setUserAuth] = useAuth();
+
   return (
    <>
     <Navbar />
@@ -13,6 +20,8 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path={`/dashboard/${userAuth?.user?.role==="admin"?'admin':'user'}`} element={userAuth?.user?.role === "admin" ? <Admin /> : <User />} />
+        <Route path='/dashboard/user/edit' element={<EditUser />} />
       </Routes>
    </>
   );

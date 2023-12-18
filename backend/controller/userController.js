@@ -1,6 +1,8 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcryptjs');
 
+
+//register a user
 exports.createUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -17,7 +19,7 @@ exports.createUser = async (req, res) => {
     }
 }
 
-
+//login a user
 exports.login = async(req, res)=>{
     const{email, password} = req.body;
     const user = await User.findOne({email:email}).select('+password');
@@ -33,7 +35,7 @@ exports.login = async(req, res)=>{
     res.status(200).json({user,token});
 }
 
-
+//edit a user
 exports.editUser=async(req, res)=>{
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {new:true});
     if(!user){
@@ -42,6 +44,7 @@ exports.editUser=async(req, res)=>{
     res.status(200).json(user);
 }
 
+//delete a user
 exports.deleteUser=async(req, res)=>{
     const user = await User.findByIdAndDelete(req.params.id);
     if(!user){
@@ -50,6 +53,7 @@ exports.deleteUser=async(req, res)=>{
     res.status(200).json('user delete successfully')
 }
 
+//logout a user
 exports.logout=(req, res)=>{
     res.cookie('token', null,{
         expires:new Date(Date.now()),
