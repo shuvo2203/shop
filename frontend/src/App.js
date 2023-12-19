@@ -21,7 +21,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path={`/dashboard/${userAuth?.user?.role==="admin"?'admin':'user'}`} element={userAuth?.user?.role === "admin" ? <Admin /> : <User />} />
-        <Route path='/dashboard/user/edit' element={<EditUser />} />
+        {/* <Route path='/dashboard/user/edit' element={<EditUser />} /> */}
       </Routes>
    </>
   );

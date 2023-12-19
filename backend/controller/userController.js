@@ -35,6 +35,15 @@ exports.login = async(req, res)=>{
     res.status(200).json({user,token});
 }
 
+//get single user
+exports.singleUser=async(req, res)=>{
+    const user = await User.findOne(req.params.id)
+    if(!user){
+        res.status(400).json('user not found');
+    }
+    res.status(200).json(user);
+}
+
 //edit a user
 exports.editUser=async(req, res)=>{
     const user = await User.findByIdAndUpdate(req.params.id, req.body, {new:true});
