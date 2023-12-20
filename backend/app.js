@@ -13,9 +13,11 @@ app.use(cookieParser());
 app.use(cors());
 
 const user = require('./routes/userRoute');
+const product = require('./routes/productRoute');
 
 
 app.use('/api/v1', user);
+app.use('/api/v1', product);
 
 
 app.listen(PORT,()=>{
